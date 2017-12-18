@@ -16,6 +16,8 @@ USER := $(shell whoami)
 server:
 	$(DOCKER) run -d -p $(SERVER_PORT):8888 \
 		-v $(WORKDIR):/home/jovyan/work \
+		-e PUBLIC_API_KEY=${PUBLIC_API_KEY}\
+		-e SECRET_API_KEY=${SECRET_API_KEY}\
 		--name $(NAME)-$(USER) \
 		cbid:latest \
 		start-notebook.sh \
